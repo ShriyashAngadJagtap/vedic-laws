@@ -4,6 +4,8 @@ import hero1Desktop from "@/assets/herosection/herosection1-desktop.jpg";
 import hero1Mobile from "@/assets/herosection/herosection1-mobile.jpg";
 import hero2Desktop from "@/assets/herosection/herosection2-desktop.png";
 import hero2Mobile from "@/assets/herosection/herosection2-mobile.png";
+import hero3Desktop from "@/assets/herosection/herosection3-desktop.png";
+import hero3Mobile from "@/assets/herosection/herosection3-mobile.png";
 
 const slides = [
   {
@@ -15,6 +17,11 @@ const slides = [
     desktop: hero2Desktop,
     mobile: hero2Mobile,
     alt: "Vedic Success System — Inspire, Align, Transform",
+  },
+  {
+    desktop: hero3Desktop,
+    mobile: hero3Mobile,
+    alt: "Vedic Success System — Leadership and wisdom",
   },
 ];
 
@@ -42,37 +49,27 @@ export function Hero() {
   }, []);
 
   return (
-    <section
-      id="top"
-      className="relative min-h-[100svh] overflow-hidden bg-[var(--forest-deep)]"
-    >
-      <div className="absolute inset-0">
+    <section id="top" className="relative w-full overflow-hidden bg-[var(--forest-deep)]">
+      <div className="relative w-full">
         {slides.map((slide, i) => {
           const active = i === index;
           return (
             <div
               key={i}
-              className="absolute inset-0"
+              className={active ? "relative w-full" : "pointer-events-none absolute inset-x-0 top-0 w-full"}
               style={{
                 opacity: active ? 1 : 0,
                 transition: `opacity ${FADE_MS}ms cubic-bezier(0.4, 0, 0.2, 1)`,
                 zIndex: active ? 1 : 0,
-                pointerEvents: "none",
               }}
               aria-hidden={!active}
             >
-              <picture className="block h-full w-full">
+              <picture className="block w-full">
                 <source media="(max-width: 767px)" srcSet={slide.mobile} />
                 <img
                   src={slide.desktop}
                   alt={active ? slide.alt : ""}
-                  className="h-full w-full object-cover object-center will-change-transform"
-                  style={{
-                    transform: active ? "scale(1.06)" : "scale(1)",
-                    transition: active
-                      ? `transform ${AUTOPLAY_MS}ms cubic-bezier(0.25, 0.1, 0.25, 1)`
-                      : `transform ${FADE_MS}ms ease`,
-                  }}
+                  className="block h-auto w-full align-top"
                   fetchPriority={i === 0 ? "high" : "auto"}
                   draggable={false}
                 />
@@ -101,7 +98,7 @@ export function Hero() {
             <ChevronRight className="h-5 w-5" strokeWidth={1.5} />
           </button>
 
-          <div className="absolute bottom-7 left-1/2 z-10 flex -translate-x-1/2 items-center gap-2.5">
+          <div className="absolute bottom-5 left-1/2 z-10 flex -translate-x-1/2 items-center gap-2.5 md:bottom-7">
             {slides.map((_, i) => (
               <button
                 key={i}

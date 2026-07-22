@@ -1,4 +1,4 @@
-import portrait from "@/assets/portrait.jpg";
+import portrait from "@/assets/portrait.png";
 import { SectionHeading } from "./Shared";
 
 const TIMELINE = [
