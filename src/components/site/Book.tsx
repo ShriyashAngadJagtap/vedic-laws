@@ -1,7 +1,33 @@
 import book from "@/assets/book.jpg";
 
-const AMAZON_URL =
-  "https://www.amazon.in/dp/B0H7T6C6RJ/ref=sr_1_1?crid=1BG660YC5L1VY&dib=eyJ2IjoiMSJ9.0h6tQEztI4uQriC09QvGHQ.rB1PD1zAlGsY-ngWuCNocJlKM2N-rDjzfT7ZvHVtI3k&dib_tag=se&keywords=9788169906005&qid=1783489048&sprefix=9788169906005%2Caps%2C268&sr=8-1";
+const BOOK_LINKS = [
+  {
+    label: "Amazon",
+    format: "Paperback",
+    href: "https://www.amazon.in/dp/9378256465",
+    style: "btn-primary" as const,
+  },
+  {
+    label: "Flipkart",
+    format: "Paperback",
+    href: "https://www.flipkart.com/product/p/itme?pid=9789378256462",
+    style: "btn-gold" as const,
+  },
+  {
+    label: "BlueRose",
+    format: "Paperback",
+    href: "https://blueroseone.com/store/product/lead-from-within-a-corporate-transformation-story-inspired-by-the-5-vedic-laws-of-success",
+    style: "btn-gold" as const,
+  },
+  {
+    label: "Google Play",
+    format: "Ebook",
+    href: "https://play.google.com/store/books/details/Dr_Shrikant_Kallurkar_Lead_From_Within_A_Corporate?id=xYLuEQAAQBAJ",
+    style: "btn-gold" as const,
+  },
+] as const;
+
+const PRIMARY_LINK = BOOK_LINKS[0].href;
 
 export function Book() {
   return (
@@ -17,7 +43,7 @@ export function Book() {
       <div className="relative mx-auto max-w-[1400px] px-6 md:px-10">
         <div className="grid gap-16 lg:grid-cols-[1fr_1.1fr] lg:items-center">
           <a
-            href={AMAZON_URL}
+            href={PRIMARY_LINK}
             target="_blank"
             rel="noopener noreferrer"
             className="relative mx-auto block w-full max-w-md"
@@ -68,15 +94,25 @@ export function Book() {
               ))}
             </ul>
 
-            <div className="mt-10 flex flex-wrap gap-3">
-              <a
-                href={AMAZON_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-primary"
-              >
-                Buy on Amazon
-              </a>
+            <div className="mt-10">
+              <p className="eyebrow mb-4 text-[var(--charcoal)]/55">Available on</p>
+              <div className="flex max-w-xl flex-wrap gap-3">
+                {BOOK_LINKS.map((link) => (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={link.style}
+                    aria-label={`Buy on ${link.label} (${link.format})`}
+                  >
+                    {link.label}
+                    <span className="text-[0.65rem] font-medium tracking-wider opacity-70">
+                      · {link.format}
+                    </span>
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
         </div>
