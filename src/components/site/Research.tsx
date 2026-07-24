@@ -2,7 +2,7 @@ import { useState } from "react";
 import { RESEARCH } from "./data";
 import { SectionHeading } from "./Shared";
 
-const TYPES = ["All", "Book", "Paper", "Whitepaper", "Case Study", "Article"];
+const TYPES = ["All", "Book", "Paper", "Case Study"];
 
 export function Research() {
   const [filter, setFilter] = useState("All");

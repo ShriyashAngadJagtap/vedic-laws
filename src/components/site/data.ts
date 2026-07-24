@@ -1,10 +1,106 @@
 export const STATS = [
-  { value: "40+", label: "Years of Experience" },
-  { value: "10,000+", label: "Lives Transformed" },
+  { value: "45+", label: "Years of Experience" },
   { value: "100+", label: "Research Papers" },
-  { value: "23+", label: "Research Scholars" },
-  { value: "20+", label: "Years as Principal" },
+  { value: "700+", label: "Scholar Citations" },
+  { value: "23", label: "Ph.D. Scholars Guided" },
+  { value: "2", label: "Patents Held" },
 ];
+
+export const FOUNDER = {
+  name: "Dr. Shrikant Kallurkar",
+  roles: "Academic Leader · Researcher · Author · Mentor · Founder – Vedic Success Systems",
+  bio: [
+    "Dr. Shrikant Kallurkar is an accomplished academic leader, researcher, author, and management educator with over 45 years of professional experience, including 40 years in higher education and 5 years in industry with Bajaj Auto Ltd. and Kirloskar Brothers Ltd., Pune.",
+    "Throughout his distinguished career, he has served as Principal of leading engineering institutions, guided doctoral scholars, led nationally funded research projects, and mentored thousands of students, faculty members, entrepreneurs, and academic leaders. His work is dedicated to integrating Indian Knowledge Systems (IKS) with modern management, leadership, entrepreneurship, and human development.",
+    "He is the Founder of Vedic Success Systems, a research-driven initiative committed to developing globally relevant frameworks for conscious leadership, organizational excellence, and human flourishing based on timeless Indian wisdom and contemporary scientific research.",
+  ],
+  education: [
+    {
+      degree: "Ph.D. (Technical Entrepreneurship)",
+      institution: "IIM Mumbai (Formerly NITIE)",
+    },
+    {
+      degree: "Master of Management Science (M.M.S.)",
+      institution: "Savitribai Phule Pune University",
+    },
+    {
+      degree: "B.E. (Mechanical Engineering)",
+      institution: "Government College of Engineering, Chhatrapati Sambhajinagar",
+    },
+  ],
+  leadership: [
+    "Founder, Vedic Success Systems",
+    "Head – Research, Institute for Studies in Vedic Sciences, Vishwa Global, Shivpuri, Akkalkot",
+    "Director, ENSIN – Entrepreneurship, Startup & Innovation Forum, Pune",
+    "Founder Principal, Marathwada Mitra Mandal's College of Engineering, Pune",
+    "Former Principal, AISSMS College of Engineering, Pune",
+    "Former Principal, Atharva College of Engineering, Mumbai",
+  ],
+  expertise: [
+    "Leadership Development",
+    "Executive Education",
+    "Indian Knowledge Systems (IKS)",
+    "Entrepreneurship and Innovation",
+    "Human Development",
+    "Corporate Governance",
+    "Engineering and Management Education",
+    "Organizational Excellence",
+    "Faculty Development",
+    "Conscious Leadership",
+  ],
+  programmes: [
+    {
+      title: "Lead From Within",
+      body: "A transformational leadership programme built around five corporate transformation case studies inspired by the 5 Vedic Laws of Success, enabling participants to lead with purpose, integrity, and self-awareness.",
+    },
+    {
+      title: "Vedic Techniques for Goal and Personality Mastery",
+      body: "A structured programme that helps learners create a long-term career roadmap while cultivating discipline, clarity, resilience, and purposeful leadership.",
+    },
+    {
+      title: "Overthinking to Clarity",
+      body: "A neuroscience- and IKS-based programme designed to improve focus, emotional resilience, mental clarity, and decision-making.",
+    },
+    {
+      title: "Teenagers Resilience Workshop",
+      body: "A holistic programme that strengthens confidence, emotional intelligence, life skills, values, and purpose among young learners.",
+    },
+  ],
+  books: [
+    "5 Vedic Laws of Success",
+    "Vedic Techniques for Goal and Personality Mastery",
+    "Lead From Within: A Corporate Transformation Story by 5 Vedic Laws of Success",
+  ],
+  forthcoming: ["Inner Science of Success: A Vedic Human Development Framework"],
+  researchHighlights: [
+    "Author of 100+ research publications",
+    "700+ Google Scholar citations",
+    "Guided 23 Ph.D. scholars",
+    "Holder of 2 patents",
+    "Successfully completed AICTE and MHRD funded research projects",
+  ],
+  contributions: [
+    "Mentor and Auditor for World Bank-funded TEQIP Phases I, II & III",
+    "Founder Coordinator, Entrepreneurship Development Cell, SGGS Institute of Engineering & Technology, Nanded",
+    "Led the Entrepreneurship Development Cell to receive the Outstanding EDC Award from the Department of Science & Technology, Government of India, for three consecutive years",
+  ],
+  initiatives: [
+    "5 Vedic Laws of Success",
+    "Vedic Human Development Framework (VHDF)",
+    "Conscious Leadership",
+    "Gita-Driven Corporate Governance",
+    "Conscious Organization",
+    "Conscious Nation",
+    "Conscious Civilization",
+  ],
+  initiativesIntro:
+    "Through Vedic Success Systems, Dr. Kallurkar is developing research-based frameworks that bridge Indian Knowledge Systems with contemporary science and management.",
+  initiativesOutro:
+    "These frameworks aim to integrate Indian Knowledge Systems with leadership, management, engineering, entrepreneurship, artificial intelligence, education, and sustainable development.",
+  vision:
+    "To develop globally relevant, research-based leadership and human development frameworks that integrate ancient Indian wisdom with contemporary science, fostering ethical leadership, organizational excellence, human flourishing, and sustainable development.",
+  motto: "Ancient Wisdom. Contemporary Science. Conscious Leadership. Sustainable Future.",
+};
 
 export const NAV_LINKS = [
   { href: "#about", label: "About" },
@@ -76,12 +172,12 @@ export const TESTIMONIALS = [
 ];
 
 export const RESEARCH = [
-  { type: "Book", title: "Lead From Within", meta: "2024 · Vedic Leadership" },
+  { type: "Book", title: "Lead From Within: A Corporate Transformation Story by 5 Vedic Laws of Success", meta: "Vedic Leadership" },
+  { type: "Book", title: "5 Vedic Laws of Success", meta: "Vedic Success Systems" },
+  { type: "Book", title: "Vedic Techniques for Goal and Personality Mastery", meta: "Human Development" },
+  { type: "Book", title: "Inner Science of Success: A Vedic Human Development Framework", meta: "Forthcoming" },
   { type: "Paper", title: "The Five Laws of the Vedic Success System", meta: "Journal of Applied Philosophy" },
-  { type: "Whitepaper", title: "Yadnya-Based Leadership in Modern Organisations", meta: "2023" },
   { type: "Case Study", title: "Transforming a Legacy Institution: A 20-Year Journey", meta: "Educational Leadership Review" },
-  { type: "Article", title: "Swadhyaya: The Forgotten Habit of Great Leaders", meta: "Featured Essay" },
-  { type: "Paper", title: "Karma-Centered Decision Making", meta: "Indian Journal of Management" },
 ];
 
 export const FAQS = [
