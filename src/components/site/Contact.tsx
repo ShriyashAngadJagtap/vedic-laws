@@ -1,6 +1,48 @@
+import { FormEvent, useState } from "react";
 import { SectionHeading } from "./Shared";
 
+const WHATSAPP_NUMBER = "919923203334";
+
+const INTERESTS = [
+  "Executive Coaching",
+  "Corporate Program",
+  "Speaking Engagement",
+  "Life Mentoring",
+  "Student Guidance",
+] as const;
+
 export function Contact() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [interest, setInterest] = useState<string>(INTERESTS[0]);
+  const [message, setMessage] = useState("");
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const trimmedName = name.trim();
+    const trimmedEmail = email.trim();
+    const trimmedMessage = message.trim();
+
+    if (!trimmedName || !trimmedEmail) return;
+
+    const text = [
+      "Hello Dr. Kallurkar,",
+      "",
+      "I would like to request an appointment.",
+      "",
+      `*Name:* ${trimmedName}`,
+      `*Email:* ${trimmedEmail}`,
+      `*Interest:* ${interest}`,
+      trimmedMessage ? `*Message:* ${trimmedMessage}` : null,
+    ]
+      .filter(Boolean)
+      .join("\n");
+
+    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
+    window.open(url, "_blank", "noopener,noreferrer");
+  };
+
   return (
     <section id="contact" className="relative overflow-hidden py-28 md:py-36 surface-ink">
       <div className="relative mx-auto max-w-[1400px] px-6 md:px-10">
@@ -64,7 +106,7 @@ export function Contact() {
 
           <form
             className="rounded-sm border border-[color-mix(in_oklab,var(--ivory)_12%,transparent)] bg-[color-mix(in_oklab,var(--chalk)_96%,transparent)] p-8 md:p-10"
-            onSubmit={(e) => e.preventDefault()}
+            onSubmit={handleSubmit}
           >
             <div className="italic-quote text-2xl text-[var(--forest-deep)]">Request an appointment</div>
             <div className="mt-6 space-y-5">
@@ -72,6 +114,10 @@ export function Contact() {
                 <span className="eyebrow text-[var(--forest-deep)]">Full Name</span>
                 <input
                   type="text"
+                  name="name"
+                  required
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                   className="mt-2 w-full border-0 border-b border-[var(--forest)]/25 bg-transparent py-3 text-[var(--forest-deep)] outline-none focus:border-[var(--forest)]"
                   placeholder="Your name"
                 />
@@ -80,24 +126,36 @@ export function Contact() {
                 <span className="eyebrow text-[var(--forest-deep)]">Email</span>
                 <input
                   type="email"
+                  name="email"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   className="mt-2 w-full border-0 border-b border-[var(--forest)]/25 bg-transparent py-3 text-[var(--forest-deep)] outline-none focus:border-[var(--forest)]"
                   placeholder="you@example.com"
                 />
               </label>
               <label className="block">
                 <span className="eyebrow text-[var(--forest-deep)]">Interest</span>
-                <select className="mt-2 w-full border-0 border-b border-[var(--forest)]/25 bg-transparent py-3 text-[var(--forest-deep)] outline-none focus:border-[var(--forest)]">
-                  <option>Executive Coaching</option>
-                  <option>Corporate Program</option>
-                  <option>Speaking Engagement</option>
-                  <option>Life Mentoring</option>
-                  <option>Student Guidance</option>
+                <select
+                  name="interest"
+                  value={interest}
+                  onChange={(e) => setInterest(e.target.value)}
+                  className="mt-2 w-full border-0 border-b border-[var(--forest)]/25 bg-transparent py-3 text-[var(--forest-deep)] outline-none focus:border-[var(--forest)]"
+                >
+                  {INTERESTS.map((option) => (
+                    <option key={option} value={option}>
+                      {option}
+                    </option>
+                  ))}
                 </select>
               </label>
               <label className="block">
                 <span className="eyebrow text-[var(--forest-deep)]">Message</span>
                 <textarea
+                  name="message"
                   rows={4}
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
                   className="mt-2 w-full resize-none border-0 border-b border-[var(--forest)]/25 bg-transparent py-3 text-[var(--forest-deep)] outline-none focus:border-[var(--forest)]"
                   placeholder="A few words about what you are seeking…"
                 />
