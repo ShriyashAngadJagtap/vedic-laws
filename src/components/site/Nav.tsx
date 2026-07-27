@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { Link } from "@tanstack/react-router";
 import logo from "@/assets/logo.jpeg";
 import { NAV_LINKS } from "./data";
 
@@ -45,29 +46,30 @@ export function Nav() {
       }`}
     >
       <div className="mx-auto flex max-w-[1400px] items-center justify-between gap-4 px-6 py-3 md:px-10 md:py-3.5">
-        <a href="#top" className="group shrink-0" aria-label="Vedic Success System — Home">
+        <Link to="/" className="group shrink-0" aria-label="Vedic Success System — Home">
           <img
             src={logo}
             alt="Vedic Success System — Inspire · Align · Transform"
             className="h-12 w-auto object-contain transition-transform duration-500 group-hover:scale-[1.02] md:h-14 lg:h-[4.25rem]"
           />
-        </a>
+        </Link>
 
         <nav className="hidden items-center gap-7 xl:flex">
           {NAV_LINKS.map((l) => (
-            <a
+            <Link
               key={l.href}
-              href={l.href}
+              to="/"
+              hash={l.href.replace("#", "")}
               className="story-link text-[0.72rem] uppercase tracking-[0.16em] text-[var(--forest-deep)]/75 transition-colors hover:text-[var(--gold-deep)] after:!bg-[var(--gold)]"
             >
               {l.label}
-            </a>
+            </Link>
           ))}
         </nav>
 
-        <a href="#contact" className="hidden lg:inline-flex btn-primary shrink-0 text-[0.7rem]">
+        <Link to="/" hash="contact" className="hidden lg:inline-flex btn-primary shrink-0 text-[0.7rem]">
           Book Consultation
-        </a>
+        </Link>
 
         <button
           type="button"
@@ -86,18 +88,19 @@ export function Nav() {
         <div className="border-t border-[color-mix(in_oklab,var(--forest)_12%,transparent)] bg-[var(--ivory)] xl:hidden">
           <div className="mx-auto flex max-w-[1400px] flex-col gap-1 px-6 py-6">
             {NAV_LINKS.map((l) => (
-              <a
+              <Link
                 key={l.href}
-                href={l.href}
+                to="/"
+                hash={l.href.replace("#", "")}
                 onClick={() => setOpen(false)}
                 className="py-2.5 text-sm uppercase tracking-[0.16em] text-[var(--forest-deep)]/80"
               >
                 {l.label}
-              </a>
+              </Link>
             ))}
-            <a href="#contact" onClick={() => setOpen(false)} className="mt-4 btn-primary self-start">
+            <Link to="/" hash="contact" onClick={() => setOpen(false)} className="mt-4 btn-primary self-start">
               Book Consultation
-            </a>
+            </Link>
           </div>
         </div>
       )}
