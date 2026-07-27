@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import logo from "@/assets/logo.png";
+import logo from "@/assets/logo.jpeg";
 import { NAV_LINKS } from "./data";
 
 export function Nav() {

@@ -67,7 +67,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "Vedic Success System" },
       { property: "og:url", content: "https://vedic-laws.vercel.app/" },
-      { property: "og:image", content: "https://vedic-laws.vercel.app/og-image.jpg" },
+      { property: "og:image", content: "https://vedic-laws.vercel.app/logo.jpeg" },
       { property: "og:image:alt", content: "Vedic Success System — Inspire · Align · Transform" },
       { property: "og:image:type", content: "image/jpeg" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -77,12 +77,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         content:
           "Educator, mentor, author and founder of the Vedic Success System. Guiding leaders, students and organisations through timeless wisdom.",
       },
-      { name: "twitter:image", content: "https://vedic-laws.vercel.app/og-image.jpg" },
+      { name: "twitter:image", content: "https://vedic-laws.vercel.app/logo.jpeg" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
-      { rel: "icon", href: "/favicon.jpg", type: "image/jpeg" },
-      { rel: "apple-touch-icon", href: "/apple-touch-icon.jpg" },
+      { rel: "icon", href: "/logo.jpeg", type: "image/jpeg" },
+      { rel: "apple-touch-icon", href: "/logo.jpeg" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
