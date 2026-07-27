@@ -16,12 +16,14 @@ import img12 from "@/assets/images-section/debfcec7-6431-4a45-ad9b-202090e171ed.
 import img13 from "@/assets/images-section/142dbaeb-e4db-4065-8d58-8fa29c26a509.jpg";
 import img14 from "@/assets/images-section/0ca4e4e4-0f18-4b99-a8d6-c0ab61b750d7.jpg";
 import img15 from "@/assets/images-section/478efcb1-b5d0-4edd-b987-b3f365bb7b9a.jpg";
+import img16 from "@/assets/images-section/kallurkar-sir-visionary-leadership.png";
 
 const IMAGES = [
   { src: img01, alt: "Speaking at a seminar" },
   { src: img02, alt: "Portrait moment" },
   { src: img03, alt: "Audience engagement" },
   { src: img04, alt: "Session in progress" },
+  { src: img16, alt: "Visionary Leadership session" },
   { src: img05, alt: "Workshop gathering" },
   { src: img06, alt: "One-on-one mentoring" },
   { src: img07, alt: "Corporate workshop" },
