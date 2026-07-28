@@ -6,6 +6,8 @@ import hero2Desktop from "@/assets/herosection/herosection2-desktop.png";
 import hero2Mobile from "@/assets/herosection/herosection2-mobile.png";
 import hero3Desktop from "@/assets/herosection/herosection3-desktop.png";
 import hero3Mobile from "@/assets/herosection/herosection3-mobile.png";
+import hero4Desktop from "@/assets/herosection/herosection4-desktop.png";
+import hero4Mobile from "@/assets/herosection/herosection4-mobile.png";
 
 const slides = [
   {
@@ -22,6 +24,11 @@ const slides = [
     desktop: hero3Desktop,
     mobile: hero3Mobile,
     alt: "Vedic Success System — Leadership and wisdom",
+  },
+  {
+    desktop: hero4Desktop,
+    mobile: hero4Mobile,
+    alt: "Vedic Success System — Wisdom in practice",
   },
 ];
 

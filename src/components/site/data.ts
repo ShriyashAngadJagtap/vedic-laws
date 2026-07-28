@@ -182,10 +182,10 @@ export const SERVICES = [
     title: "Holistic Development",
     body: "Programs that cultivate mind, body, intellect and spirit as a single integrated whole.",
   },
-  {
-    title: "Educational Consulting",
-    body: "Advisory for schools, colleges and universities on culture, curriculum and pedagogy.",
-  },
+  // {
+  //   title: "Educational Consulting",
+  //   body: "Advisory for schools, colleges and universities on culture, curriculum and pedagogy.",
+  // },
   {
     title: "Teacher Training",
     body: "Deep training for educators who wish to teach with presence, purpose and craft.",
