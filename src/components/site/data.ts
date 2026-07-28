@@ -161,6 +161,41 @@ export const FIVE_C = [
   { key: "Critical Conversation", body: "Hold the hard conversation with truth, dignity and skill." },
 ];
 
+export const SERVICES = [
+  {
+    title: "Corporate Leadership Programs",
+    body: "Immersive engagements for senior leaders integrating Vedic principles with modern executive practice.",
+  },
+  {
+    title: "Executive Coaching",
+    body: "One-on-one coaching for CEOs, founders and senior leaders navigating high-stakes transitions.",
+  },
+  {
+    title: "Student Career Guidance",
+    body: "Structured mentoring for students seeking clarity of purpose, direction and craft.",
+  },
+  {
+    title: "Life Mentoring",
+    body: "A long-term mentoring relationship for individuals committed to conscious growth.",
+  },
+  {
+    title: "Holistic Development",
+    body: "Programs that cultivate mind, body, intellect and spirit as a single integrated whole.",
+  },
+  {
+    title: "Educational Consulting",
+    body: "Advisory for schools, colleges and universities on culture, curriculum and pedagogy.",
+  },
+  {
+    title: "Teacher Training",
+    body: "Deep training for educators who wish to teach with presence, purpose and craft.",
+  },
+  {
+    title: "Personal Transformation",
+    body: "Guided journeys for those ready to redesign their inner and outer life.",
+  },
+];
+
 export const TESTIMONIALS = [
   { quote: "Dr. Kallurkar doesn't teach leadership — he awakens it. Our senior team has never been more aligned.", name: "Ananya Rao", role: "CHRO, Fortune 500 Enterprise" },
   { quote: "The Vedic Success System gave me a compass. Six months later, I feel like a different human being.", name: "Rohan Mehta", role: "Founder & CEO" },

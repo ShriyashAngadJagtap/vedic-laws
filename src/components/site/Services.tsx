@@ -1,28 +1,5 @@
-import type { SyntheticEvent } from "react";
-import corporateLeadership from "@/assets/programs/corporate-leadership.webp";
-import executiveCoaching from "@/assets/programs/executive-coaching.webp";
-import studentCareer from "@/assets/programs/student-career-guidance.webp";
-import lifeMentoring from "@/assets/programs/life-mentoring.webp";
-import holisticDevelopment from "@/assets/programs/holistic-development.webp";
-import educationalConsulting from "@/assets/programs/educational-consulting.webp";
-import teacherTraining from "@/assets/programs/teacher-training.webp";
-import personalTransformation from "@/assets/programs/personal-transformation.webp";
+import { SERVICES } from "./data";
 import { SectionHeading } from "./Shared";
-
-const PROGRAMS = [
-  { title: "Corporate Leadership Programs", image: corporateLeadership },
-  { title: "Executive Coaching", image: executiveCoaching },
-  { title: "Student Career Guidance", image: studentCareer },
-  { title: "Life Mentoring", image: lifeMentoring },
-  { title: "Holistic Development", image: holisticDevelopment },
-  { title: "Educational Consulting", image: educationalConsulting },
-  { title: "Teacher Training", image: teacherTraining },
-  { title: "Personal Transformation", image: personalTransformation },
-] as const;
-
-function protectImage(e: SyntheticEvent) {
-  e.preventDefault();
-}
 
 export function Services() {
   return (
@@ -35,7 +12,7 @@ export function Services() {
             "linear-gradient(180deg, transparent, color-mix(in oklab, var(--sand) 70%, transparent) 40%, transparent)",
         }}
       />
-      <div className="relative mx-auto max-w-[1200px] px-6 md:px-10">
+      <div className="relative mx-auto max-w-[1400px] px-6 md:px-10">
         <SectionHeading
           eyebrow="Programs & Engagements"
           title="Ways to work"
@@ -43,28 +20,25 @@ export function Services() {
           subtitle="From private executive coaching to institutional transformation — every engagement is designed around the person or organisation it serves."
         />
 
-        <div
-          className="mt-16 grid grid-cols-1 items-start gap-6 sm:grid-cols-2 sm:gap-8"
-          onContextMenu={protectImage}
-        >
-          {PROGRAMS.map((p) => (
+        <div className="mt-20 grid gap-px bg-[color-mix(in_oklab,var(--forest)_18%,transparent)] md:grid-cols-2 lg:grid-cols-4">
+          {SERVICES.map((s, i) => (
             <a
-              key={p.title}
+              key={s.title}
               href="#contact"
-              className="group relative block w-full overflow-hidden shadow-[0_18px_40px_-28px_color-mix(in_oklab,var(--forest-deep)_45%,transparent)] transition-transform duration-500 hover:-translate-y-1"
-              aria-label={`${p.title} — enquire`}
-              onContextMenu={protectImage}
-              onDragStart={protectImage}
+              className="group relative bg-[var(--ivory)] p-8 transition-all duration-500 hover:bg-[var(--forest)]"
             >
-              <img
-                src={p.image}
-                alt={p.title}
-                loading="lazy"
-                draggable={false}
-                onContextMenu={protectImage}
-                onDragStart={protectImage}
-                className="img-protected block h-auto w-full max-w-full object-contain transition-transform duration-700 group-hover:scale-[1.015]"
-              />
+              <div className="number text-sm text-[var(--gold)] transition-colors group-hover:text-[var(--lotus)]">
+                {String(i + 1).padStart(2, "0")}
+              </div>
+              <h3 className="mt-6 font-display text-xl text-[var(--forest-deep)] transition-colors group-hover:text-[var(--ivory)]">
+                {s.title}
+              </h3>
+              <p className="mt-3 text-sm leading-relaxed text-[var(--charcoal)]/70 transition-colors group-hover:text-[var(--ivory)]/80">
+                {s.body}
+              </p>
+              <div className="mt-8 flex items-center gap-2 text-[0.68rem] uppercase tracking-[0.2em] text-[var(--ivory)] opacity-0 transition-opacity group-hover:opacity-100">
+                Enquire <span aria-hidden>→</span>
+              </div>
             </a>
           ))}
         </div>
