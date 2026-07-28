@@ -270,7 +270,7 @@ export function About() {
 
         <GoldDivider className="my-20 md:my-28" />
 
-        <div className="mx-auto max-w-4xl">
+        <div className="mx-auto max-w-5xl">
           <SectionHeading
             eyebrow="Current Research"
             title="Bridging Indian Knowledge Systems"
@@ -292,6 +292,51 @@ export function About() {
           <p className="mx-auto mt-10 max-w-2xl text-center leading-relaxed text-[var(--charcoal)]/70">
             {FOUNDER.initiativesOutro}
           </p>
+
+          <div className="mt-14">
+            <div className="mb-6 flex items-center justify-center gap-3">
+              <span className="h-px w-6 bg-[var(--gold)]" />
+              <span className="eyebrow text-[var(--forest-deep)]">Selected Papers</span>
+              <span className="h-px w-6 bg-[var(--gold)]" />
+            </div>
+            <div className="grid gap-px bg-[color-mix(in_oklab,var(--forest)_16%,transparent)] md:grid-cols-3">
+              {FOUNDER_PAPERS.map((paper, i) => (
+                <article
+                  key={paper.href}
+                  className="flex flex-col bg-[var(--ivory)] p-7 transition-colors hover:bg-[var(--chalk)]"
+                >
+                  <div className="flex items-center justify-between gap-3">
+                    <span className="number text-sm text-[var(--gold)]">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span className="text-right text-[0.65rem] text-[var(--charcoal)]/45">
+                      {paper.meta}
+                    </span>
+                  </div>
+                  <h4 className="mt-4 font-display text-xl leading-tight text-[var(--forest-deep)]">
+                    {paper.title}
+                  </h4>
+                  <div className="mt-auto flex flex-wrap items-center gap-x-5 gap-y-3 pt-7">
+                    <a
+                      href={paper.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[0.68rem] uppercase tracking-[0.18em] text-[var(--forest-deep)] transition-colors hover:text-[var(--gold-deep)]"
+                    >
+                      View PDF
+                    </a>
+                    <a
+                      href={paper.href}
+                      download={paper.filename}
+                      className="text-[0.68rem] uppercase tracking-[0.18em] text-[var(--forest-deep)]/70 transition-colors hover:text-[var(--gold-deep)]"
+                    >
+                      Download ↓
+                    </a>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
         </div>
 
         <div className="mx-auto mt-20 max-w-3xl border-t border-[color-mix(in_oklab,var(--forest)_18%,transparent)] pt-14 text-center md:mt-28">
