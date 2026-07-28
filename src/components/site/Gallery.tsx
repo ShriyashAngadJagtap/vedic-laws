@@ -1,4 +1,13 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import Autoplay from "embla-carousel-autoplay";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+  type CarouselApi,
+} from "@/components/ui/carousel";
 import { SectionHeading } from "./Shared";
 
 import img01 from "@/assets/images-section/3140adc5-8f13-4498-9f60-0e1276953813.jpg";
@@ -39,6 +48,26 @@ const IMAGES = [
 
 export function Gallery() {
   const [lightbox, setLightbox] = useState<number | null>(null);
+  const [api, setApi] = useState<CarouselApi>();
+  const [current, setCurrent] = useState(0);
+  const autoplayPlugin = useRef(
+    Autoplay({
+      delay: 3200,
+      stopOnInteraction: false,
+      stopOnMouseEnter: true,
+    }),
+  );
+
+  useEffect(() => {
+    if (!api) return;
+
+    const onSelect = () => setCurrent(api.selectedScrollSnap());
+    onSelect();
+    api.on("select", onSelect);
+    return () => {
+      api.off("select", onSelect);
+    };
+  }, [api]);
 
   useEffect(() => {
     if (lightbox === null) return;
@@ -65,26 +94,61 @@ export function Gallery() {
       <div className="relative mx-auto max-w-[1400px] px-6 md:px-10">
         <SectionHeading eyebrow="Moments" title="A life in the room." italic="Presence, always." light />
 
-        {/* Masonry: portraits stay tall, landscapes stay wide — no forced crop */}
-        <div className="mt-16 columns-1 gap-3 sm:columns-2 sm:gap-4 lg:columns-3 xl:columns-4">
-          {IMAGES.map((img, idx) => (
-            <button
-              key={img.src}
-              type="button"
-              onClick={() => setLightbox(idx)}
-              className="group relative mb-3 block w-full break-inside-avoid overflow-hidden sm:mb-4"
-              aria-label={`View photo: ${img.alt}`}
-            >
-              <img
-                src={img.src}
-                alt={img.alt}
-                loading="lazy"
-                decoding="async"
-                className="block h-auto w-full transition-transform duration-[1200ms] group-hover:scale-[1.03]"
+        <div className="mt-16">
+          <Carousel
+            setApi={setApi}
+            opts={{
+              align: "start",
+              loop: true,
+              skipSnaps: false,
+              dragFree: false,
+            }}
+            plugins={[autoplayPlugin.current]}
+            className="w-full"
+          >
+            <CarouselContent className="-ml-3 md:-ml-4">
+              {IMAGES.map((img, idx) => (
+                <CarouselItem
+                  key={img.src}
+                  className="basis-[85%] pl-3 sm:basis-1/2 md:pl-4 lg:basis-1/3"
+                >
+                  <button
+                    type="button"
+                    onClick={() => setLightbox(idx)}
+                    className="group relative block w-full overflow-hidden"
+                    aria-label={`View photo: ${img.alt}`}
+                  >
+                    <div className="aspect-[4/3] overflow-hidden">
+                      <img
+                        src={img.src}
+                        alt={img.alt}
+                        loading="lazy"
+                        decoding="async"
+                        className="h-full w-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-[1.04]"
+                      />
+                    </div>
+                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[var(--forest-deep)]/55 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                  </button>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+
+            <div className="mt-10 flex items-center justify-center gap-5">
+              <CarouselPrevious
+                variant="ghost"
+                className="static h-11 w-11 translate-x-0 translate-y-0 rounded-full border border-[color-mix(in_oklab,var(--lotus)_35%,transparent)] bg-transparent text-[var(--ivory)] hover:bg-[color-mix(in_oklab,var(--lotus)_12%,transparent)] hover:text-[var(--lotus)] disabled:opacity-40"
               />
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[var(--forest-deep)]/50 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-            </button>
-          ))}
+              <p className="min-w-[4.5rem] text-center text-[0.7rem] tracking-[0.22em] text-[var(--ivory)]/55">
+                {String(current + 1).padStart(2, "0")}
+                <span className="mx-2 text-[var(--gold)]/70">/</span>
+                {String(IMAGES.length).padStart(2, "0")}
+              </p>
+              <CarouselNext
+                variant="ghost"
+                className="static h-11 w-11 translate-x-0 translate-y-0 rounded-full border border-[color-mix(in_oklab,var(--lotus)_35%,transparent)] bg-transparent text-[var(--ivory)] hover:bg-[color-mix(in_oklab,var(--lotus)_12%,transparent)] hover:text-[var(--lotus)] disabled:opacity-40"
+              />
+            </div>
+          </Carousel>
         </div>
       </div>
 
