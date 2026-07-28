@@ -99,6 +99,27 @@ export const FOUNDER = {
   motto: "Ancient Wisdom. Contemporary Science. Conscious Leadership. Sustainable Future.",
 };
 
+export const FOUNDER_PAPERS = [
+  {
+    title: "Full Research Paper (V2)",
+    meta: "Research Paper · December 2023 · PDF",
+    href: "/research/full-paper-v2-16122023.pdf",
+    filename: "full-paper-v2-16122023.pdf",
+  },
+  {
+    title: "EDAI Research Paper — Group 03",
+    meta: "Research Paper · PDF",
+    href: "/research/research-paper-edai-grp-03.pdf",
+    filename: "research-paper-edai-grp-03.pdf",
+  },
+  {
+    title: "Full Conference Paper",
+    meta: "Conference Paper · PDF",
+    href: "/research/full-conference-paper-march.pdf",
+    filename: "full-conference-paper-march.pdf",
+  },
+] as const;
+
 export const NAV_LINKS = [
   { href: "#about", label: "About" },
   { href: "#vedic-system", label: "Vedic System" },

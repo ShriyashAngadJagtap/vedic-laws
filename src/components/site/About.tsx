@@ -1,6 +1,22 @@
+import { useEffect, useState } from "react";
 import portrait from "@/assets/portrait.png";
-import { FOUNDER } from "./data";
+import certAppreciation from "@/assets/certificates/letter-of-appreciation-khalsa.png";
+import certNicmar from "@/assets/certificates/nicmar-iks-research.png";
+import { FOUNDER, FOUNDER_PAPERS } from "./data";
 import { GoldDivider, SectionHeading } from "./Shared";
+
+const CERTIFICATES = [
+  {
+    src: certAppreciation,
+    alt: "Letter of Appreciation — Khalsa College of Engineering & Technology, Amritsar",
+    label: "Letter of Appreciation · Khalsa College, Amritsar",
+  },
+  {
+    src: certNicmar,
+    alt: "NICMAR research — Co-Investigator, Indian Knowledge Systems study",
+    label: "Co-Investigator · NICMAR University, Pune",
+  },
+] as const;
 
 function SubHead({ children }: { children: string }) {
   return (
@@ -25,6 +41,23 @@ function DashList({ items }: { items: readonly string[] }) {
 }
 
 export function About() {
+  const [lightbox, setLightbox] = useState<number | null>(null);
+
+  useEffect(() => {
+    if (lightbox === null) return;
+
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setLightbox(null);
+    };
+
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [lightbox]);
+
   return (
     <section id="about" className="relative py-24 md:py-36">
       <div className="mx-auto max-w-[1400px] px-6 md:px-10">
@@ -47,6 +80,37 @@ export function About() {
                 }}
               />
             </div>
+
+            <div className="mt-6">
+              <div className="mb-4 flex items-center gap-3">
+                <span className="h-px w-6 bg-[var(--gold)]" />
+                <span className="eyebrow text-[var(--forest-deep)]">Recognition</span>
+              </div>
+              <div className="grid grid-cols-2 gap-3">
+                {CERTIFICATES.map((cert, idx) => (
+                  <button
+                    key={cert.src}
+                    type="button"
+                    onClick={() => setLightbox(idx)}
+                    className="group overflow-hidden border border-[color-mix(in_oklab,var(--forest)_12%,transparent)] bg-[var(--ivory)] text-left transition-shadow hover:shadow-[0_12px_28px_-20px_color-mix(in_oklab,var(--forest-deep)_50%,transparent)]"
+                    aria-label={`View fullscreen: ${cert.label}`}
+                  >
+                    <div className="aspect-[3/4] overflow-hidden bg-[var(--chalk)]">
+                      <img
+                        src={cert.src}
+                        alt={cert.alt}
+                        loading="lazy"
+                        className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+                      />
+                    </div>
+                    <span className="block border-t border-[color-mix(in_oklab,var(--forest)_10%,transparent)] px-2.5 py-2 text-[0.58rem] uppercase leading-snug tracking-[0.12em] text-[var(--charcoal)]/55">
+                      {cert.label}
+                    </span>
+                  </button>
+                ))}
+              </div>
+            </div>
+
             <blockquote className="mt-6 border-l-2 border-[var(--gold)] bg-[var(--chalk)] py-6 pl-6 pr-4">
               <p className="italic-quote text-2xl leading-snug text-[var(--forest-deep)]">
                 “{FOUNDER.motto}”
@@ -75,6 +139,52 @@ export function About() {
                   {paragraph}
                 </p>
               ))}
+            </div>
+
+            <div className="mt-14">
+              <SubHead>Selected Research Papers</SubHead>
+              <p className="mb-6 max-w-2xl text-sm leading-relaxed text-[var(--charcoal)]/65">
+                Open a paper in your browser, or download a copy to keep.
+              </p>
+              <div className="grid gap-3">
+                {FOUNDER_PAPERS.map((paper, i) => (
+                  <article
+                    key={paper.href}
+                    className="flex flex-col gap-4 border border-[color-mix(in_oklab,var(--forest)_14%,transparent)] bg-[var(--chalk)] p-5 sm:flex-row sm:items-center sm:justify-between sm:gap-6"
+                  >
+                    <div className="min-w-0">
+                      <div className="flex items-center gap-3">
+                        <span className="number text-sm text-[var(--gold)]">
+                          {String(i + 1).padStart(2, "0")}
+                        </span>
+                        <span className="text-[0.65rem] uppercase tracking-[0.16em] text-[var(--charcoal)]/45">
+                          {paper.meta}
+                        </span>
+                      </div>
+                      <h4 className="mt-2 font-display text-lg leading-snug text-[var(--forest-deep)] md:text-xl">
+                        {paper.title}
+                      </h4>
+                    </div>
+                    <div className="flex shrink-0 items-center gap-4">
+                      <a
+                        href={paper.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-[0.68rem] uppercase tracking-[0.18em] text-[var(--forest-deep)] transition-colors hover:text-[var(--gold-deep)]"
+                      >
+                        View PDF
+                      </a>
+                      <a
+                        href={paper.href}
+                        download={paper.filename}
+                        className="inline-flex items-center border border-[color-mix(in_oklab,var(--forest)_22%,transparent)] px-3 py-2 text-[0.68rem] uppercase tracking-[0.18em] text-[var(--forest-deep)] transition-colors hover:border-[var(--gold)] hover:text-[var(--gold-deep)]"
+                      >
+                        Download ↓
+                      </a>
+                    </div>
+                  </article>
+                ))}
+              </div>
             </div>
 
             <div className="mt-14">
@@ -198,6 +308,36 @@ export function About() {
           </p>
         </div>
       </div>
+
+      {lightbox !== null && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-[var(--forest-deep)]/95 p-6 backdrop-blur"
+          onClick={() => setLightbox(null)}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Certificate viewer"
+        >
+          <img
+            src={CERTIFICATES[lightbox].src}
+            alt={CERTIFICATES[lightbox].alt}
+            className="max-h-[88vh] max-w-[92vw] object-contain"
+            onClick={(e) => e.stopPropagation()}
+          />
+
+          <button
+            type="button"
+            onClick={() => setLightbox(null)}
+            className="absolute right-5 top-5 flex h-11 w-11 items-center justify-center rounded-full border border-[var(--ivory)]/25 text-2xl leading-none text-[var(--ivory)]/90 transition-colors hover:border-[var(--lotus)] hover:text-[var(--lotus)] md:right-8 md:top-8"
+            aria-label="Close"
+          >
+            ×
+          </button>
+
+          <p className="absolute bottom-6 left-1/2 max-w-[90vw] -translate-x-1/2 text-center text-[0.7rem] tracking-[0.16em] text-[var(--ivory)]/55">
+            {CERTIFICATES[lightbox].label}
+          </p>
+        </div>
+      )}
     </section>
   );
 }
